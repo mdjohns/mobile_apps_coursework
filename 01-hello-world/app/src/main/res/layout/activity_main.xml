@@ -39,19 +39,56 @@
             android:hint="@string/write_msg_hint"
             android:inputType="text" />
 
-        <Button
-            android:id="@+id/showBtn"
+        <LinearLayout
+            android:id="@+id/buttonLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="#E91E63"
-            android:fontFamily="sans-serif-black"
-            android:onClick="showTextMessage"
-            android:text="show text"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/showBtn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="#E91E63"
+                android:fontFamily="sans-serif-black"
+                android:onClick="showTextMessage"
+                android:text="@string/show_btn"
+                android:textAlignment="viewStart"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/cleanBtn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="24dp"
+                android:background="#E91E63"
+                android:fontFamily="sans-serif-black"
+                android:onClick="cleanTextField"
+                android:text="@string/clean_btn"
+                android:textAlignment="viewStart"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
