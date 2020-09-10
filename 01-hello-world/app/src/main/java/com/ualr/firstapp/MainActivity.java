@@ -1,11 +1,11 @@
-package com.ualr.helloworld;
+package com.ualr.firstapp;
 
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ualr.helloworld.databinding.ActivityMainBinding;
+import com.ualr.firstapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +25,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showTextMessage(View view) {
-        // TODO 06. We use the binding reference to access the GUI elements and get/modify their properties
-        mBinding.userMsgTV.setText(mBinding.userInputET.getText().toString());
+        if (!mBinding.userInputET.getText().toString().equals("")) {
+            // TODO 06. We use the binding reference to access the GUI elements and get/modify their properties
+            mBinding.userMsgTV.setText(mBinding.userInputET.getText().toString());
+        }
+    }
+    public void cleanTextField(View view) {
+        mBinding.userInputET.setText("");
+        mBinding.userMsgTV.setText(R.string.default_msg);
     }
 }

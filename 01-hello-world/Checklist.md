@@ -1,0 +1,28 @@
+# Hello World `TODO` checklist
+
+- [x] Change the package name of the app. New package name: `com.ualr.firstapp`
+  - Right-clicked the package from the File Explorer Android view and selected _refactor_ -> _rename_.
+  - Changed package name as specified above.
+- [x] Change the app name. New app name: `First App`
+  - Updated the `app_name` value from `res/values/strings.xml` to new app name specified above.
+- [x] Change the app icon. The new icon will use the `ic_countryimage` drawable as foreground and light blue color as background.
+  - Created new drawable resource by right clicking `res/drawable` folder and selecting _New_ -> _Image Resource_
+  - Selected clip art image from the Material library and wrote new `ic_countryimage` file.
+  - **Note**: Not sure if `ic_countryimage` was a resource that was supposed to exist already, so hopefully this demonstrates my ability to update the icon either way.
+- [x] Set a new width value (120 dp) for the button with the `showBtn` id
+  - Updated `activity_main.xml` by modifying `layout_width` property of `showBtn` to `120dp`
+  - Also updated `text` property to use the appropriate string constant.
+  - Reduced `textSize` to `14sp` to accommodate the longer text.
+- [x] Add a new property to the `showBtn` button to align the text within to the left side of the button.
+  - Updated `activity_main.xml` by adding property `textAlignment: viewStart` to `showButton`.
+- [x] Avoid updating the text label `userMsgTV` when the user taps on _Show Text_ button and the text field `userInputET` is empty
+  - Added conditional logic at line 28 of `MainActivity.java` to only update the text field if the text is not an empty string.
+- [x] Create a new method called `cleanTextField` to delete the text inside the text field.
+  - Created method at line 33 of `MainActivity.java`. This method sets the text of `userInputET` to an empty string and resets the `userMsgTV` value to the default state using `R.string.default_msg`.
+- [x] Add a new button with the `cleanBtn` into the layout with the same properties of the show button (`showBtn`)
+  - Created new button using _Code_ view of `activity_main.xml` at line 62. Duplicated the existing `showBtn`, then added the appropriate `id` property.
+  - Experimented with the layout by adding a horizontal `LinearLayout` for the buttons. Used `margin` properties to align the buttons a bit better. Not perfect, but it looks decent on my Pixel.
+- [x] Link the `cleanBtn` to the `cleanTextField` method so whenever the user taps the button the text field gets cleaned
+  - Addded the click handler to the `cleanBtn` for the `cleanTextField` method at line 70 of `activity_main.xml`.
+- [x] Modify the build configuration to make the app compatible with devices running an Android version above 14
+  - Updated `build.gradle` for the `app` by updating the `minSdkVersion` to `14`.
