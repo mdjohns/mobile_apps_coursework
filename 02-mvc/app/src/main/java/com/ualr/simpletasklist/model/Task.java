@@ -1,10 +1,28 @@
 package com.ualr.simpletasklist.model;
 
 public class Task {
+    private String taskDescription;
+    private Boolean isComplete;
 
-    // TODO 01. Define two attributes for the Task class: one to store the task description and a second one that
-    //  indicates whether the task is done or not
+    public Task(String taskDescription, Boolean isComplete) {
+        this.taskDescription = taskDescription;
+        this.isComplete = isComplete;
+    }
 
-    // TODO 02. Define the class constructor and the corresponding getters and setters.
 
+    public String getTaskDescription() {
+        return taskDescription;
+    }
+
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
+
+    public Boolean getComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(Boolean complete) {
+        isComplete = complete;
+    }
 }
