@@ -4,8 +4,8 @@
 
     <dimen name="button_margin_top">8dp</dimen>
 
-    <dimen name="country_image_width">128dp</dimen>
-    <dimen name="country_image_height">0dp</dimen>
+    <dimen name="country_image_width">0dp</dimen>
+    <dimen name="country_image_height">262dp</dimen>
     <dimen name="country_image_margin_bottom">12dp</dimen>
     <dimen name="country_description_margin_start">24dp</dimen>
     <dimen name="country_description_margin_bottom">24dp</dimen>
