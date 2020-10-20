@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:id="@+id/scrollView2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_200"
+    app:layout_constraintTop_toTopOf="@id/mtrl_picker_header"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+>
+
+
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/scan_chip"
+                    app:chipIcon="@drawable/ic_center_focus_weak_chip" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/top_up_chip"
+                    app:chipIcon="@drawable/ic_add_circle_outline_chip" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/send_chip"
+                    app:chipIcon="@drawable/ic_open_in_new_chip" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/request_chip"
+                    app:chipIcon="@drawable/ic_open_in_new_rotated_chip" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+
+    <TextView
+        android:id="@+id/mtrl_picker_header"
+        style="@style/Theme.MaterialComponents.Light.DarkActionBar"
+        android:layout_marginBottom="731dp"
+        android:text="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
