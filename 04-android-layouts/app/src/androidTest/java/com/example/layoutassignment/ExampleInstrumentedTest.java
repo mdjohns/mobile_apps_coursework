@@ -1,4 +1,4 @@
-package com.ualr.layoutassignment;
+package com.example.layoutassignment;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.ualr.layoutassignment", appContext.getPackageName());
+        assertEquals("com.example.layoutassignment", appContext.getPackageName());
     }
 }

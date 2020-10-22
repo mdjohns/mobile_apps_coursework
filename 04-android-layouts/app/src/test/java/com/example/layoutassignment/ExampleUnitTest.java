@@ -1,4 +1,4 @@
-package com.ualr.layoutassignment;
+package com.example.layoutassignment;
 
 import org.junit.Test;
 

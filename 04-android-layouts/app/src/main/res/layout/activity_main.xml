@@ -1,11 +1,403 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_200">
+    android:background="@color/grey_200"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
 
-    <!-- TODO 01. Define the layout for the MainActivity here. -->
-    <!-- NOTE: Remember that in order to include some GUI components you will have to use the Material library -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/app_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="@dimen/spacing_xsmall"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Chip.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_chip"
+                app:chipIcon="@drawable/ic_center_focus_weak_chip" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Chip.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/top_up_chip"
+                app:chipIcon="@drawable/ic_add_circle_outline_chip" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Chip.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_chip"
+                app:chipIcon="@drawable/ic_open_in_new_chip" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Chip.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/request_chip"
+                app:chipIcon="@drawable/ic_open_in_new_rotated_chip" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/buy_now_card"
+            style="@style/CardView.White"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chips">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buy_now_constraint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_medium">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/card_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/phone_image"
+                        android:layout_width="@dimen/phone_icon_size"
+                        android:layout_height="@dimen/phone_icon_size"
+                        android:padding="@dimen/spacing_xsmall"
+                        android:paddingTop="@dimen/spacing_medium"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/buy_now_button"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_phone_android" />
+
+                    <TextView
+                        android:id="@+id/pulsa_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="@string/pulsa_amp_data"
+                        android:textSize="@dimen/main_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/pulsa_bonus_text"
+                        app:layout_constraintLeft_toRightOf="@id/phone_image"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/pulsa_bonus_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:text="@string/bonus_pulsa_50"
+                        android:textColor="@color/red_300"
+                        android:textSize="@dimen/subtitle_text_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/phone_image"
+                        app:layout_constraintTop_toBottomOf="@+id/pulsa_text" />
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buy_now_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_medium"
+                        android:text="@string/buy_now"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@id/phone_image"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/card_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_top">
+
+                    <TextView
+                        android:id="@+id/electric_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/electric"
+                        android:textSize="@dimen/subtitle_text_size"
+                        app:drawableTopCompat="@drawable/ic_lightbulb"
+                        app:layout_constraintEnd_toStartOf="@+id/cash_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cash_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/cash"
+                        android:textSize="@dimen/subtitle_text_size"
+                        app:drawableTopCompat="@drawable/ic_monetization_on"
+                        app:layout_constraintEnd_toStartOf="@+id/games_text"
+                        app:layout_constraintStart_toEndOf="@+id/electric_text"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/games_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/games"
+                        android:textSize="@dimen/subtitle_text_size"
+                        app:drawableTopCompat="@drawable/ic_games"
+                        app:layout_constraintEnd_toEndOf="@id/see_all_text"
+                        app:layout_constraintStart_toEndOf="@+id/cash_text"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/see_all_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/see_all"
+                        android:textSize="@dimen/subtitle_text_size"
+                        app:drawableTopCompat="@drawable/ic_more_horiz"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/games_text"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/discount_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buy_now_card"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/btn_group_bg"
+                android:text="@string/discount"
+                android:textColor="@color/btn_group_txt" />
+
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/btn_group_bg"
+                android:text="@string/no_discount"
+                android:textColor="@color/btn_group_txt" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/invoice_card"
+            style="@style/CardView.White"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/discount_toggle">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/form_constraint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_medium">
+
+                <TextView
+                    android:id="@+id/card_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="@dimen/card_icon_padding"
+                    android:text="@string/invoice"
+                    app:drawableEndCompat="@drawable/ic_swap_vert" />
+
+                <View
+                    android:id="@+id/separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/separator_height"
+                    android:background="@color/grey_20"
+                    app:layout_constraintTop_toBottomOf="@id/card_title" />
+
+                <LinearLayout
+                    android:id="@+id/checkbox_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_xxxlarge"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/price_input_layout"
+                    app:layout_constraintTop_toBottomOf="@id/separator">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/checkbox1"
+                        style="@style/CheckBox.Blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/product1" />
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/checkbox2"
+                        style="@style/CheckBox.Blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/product2" />
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/checkbox3"
+                        style="@style/CheckBox.Blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/product3" />
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/checkbox4"
+                        style="@style/CheckBox.Blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/product4" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/price_input_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/checkbox_layout"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/separator">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/product_input1"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="@dimen/price_input_width"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:hint="@string/default_total"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/product_input2"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="@dimen/price_input_width"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:hint="@string/default_total"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/product_input3"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="@dimen/price_input_width"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:hint="@string/default_total"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/product_input4"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="@dimen/price_input_width"
+                        android:layout_height="match_parent"
+                        app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:hint="@string/default_total"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="@dimen/card_width"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/invoice_card">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/calculate_total_btn"
+                style="@style/Button.Outlined.White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calculate_total_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/invoice_total"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/invoice_total"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="@dimen/price_input_width"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/calculate_total_btn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/total"
+                    android:inputType="none"
+                    android:text="@string/default_total" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

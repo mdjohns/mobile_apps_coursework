@@ -29,4 +29,17 @@
     <dimen name="card_corner_radius">4dp</dimen>
     <dimen name="card_elevation">4dp</dimen>
 
+    <!-- text sizes -->
+    <dimen name="main_text_size">16sp</dimen>
+    <dimen name="subtitle_text_size">12sp</dimen>
+
+    <!-- icon sizes -->
+    <dimen name="phone_icon_size">60dp</dimen>
+    <dimen name="card_icon_size">40dp</dimen>
+    <dimen name="separator_height">1dp</dimen>
+
+    <dimen name="card_width">350dp</dimen>
+    <dimen name="card_icon_padding">250dp</dimen>
+    <dimen name="price_input_width">110dp</dimen>
+
 </resources>
