@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.O
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mAdapter = new RecyclerAdapter(this, inboxList);
+        mAdapter.setOnItemClickListener(this);
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
