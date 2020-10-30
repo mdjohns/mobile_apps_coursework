@@ -2,6 +2,7 @@ package com.ualr.recyclerviewassignment.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +26,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
     private List<Inbox> mItems;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
-
 
     public interface OnItemClickListener {
         void onItemClick(View view, Inbox obj, int position);
@@ -57,11 +57,37 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         InboxViewHolder viewHolder = (InboxViewHolder) holder;
         final Inbox inbox = mItems.get(position);
 
+        // Color resources
+        int selectedColor = mContext.getResources().getColor(R.color.grey_20);
+        int selectedIconColor = mContext.getResources().getColor(R.color.colorAccent);
+        int defaultIconColor = mContext.getResources().getColor(R.color.colorPrimary);
+
+        // Drawable resources and initializations
+        Drawable defaultCircle = mContext.getDrawable(R.drawable.shape_circle);
+        Drawable selectedIndicator = mContext.getDrawable(R.drawable.ic_delete_24px);
+        Drawable selectedCircle = mContext.getDrawable(R.drawable.shape_circle);
+        defaultCircle.mutate().setColorFilter(defaultIconColor, PorterDuff.Mode.SRC_IN);
+        selectedCircle.mutate().setColorFilter(selectedIconColor, PorterDuff.Mode.SRC_IN);
+        selectedCircle.setBounds(0, 0, 24, 24);
+
+        // Set standard content
         viewHolder.senderIcon.setText(inbox.getFrom().substring(0, 1));
         viewHolder.senderName.setText(inbox.getFrom());
         viewHolder.senderEmail.setText(inbox.getEmail());
         viewHolder.emailPreview.setText(R.string.lorem_ipsum);
         viewHolder.emailTimestamp.setText(inbox.getDate());
+
+        if (inbox.isSelected()) {
+            viewHolder.lyt_parent.setBackgroundColor(selectedColor);
+            viewHolder.senderIcon.setBackground(selectedCircle);
+            viewHolder.senderIcon.setCompoundDrawablesWithIntrinsicBounds(selectedIndicator, null,null,null);
+
+        }
+        else {
+            viewHolder.lyt_parent.setBackgroundColor(Color.TRANSPARENT);
+            viewHolder.senderIcon.setBackground(defaultCircle);
+            viewHolder.senderIcon.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
+        }
 
     }
 
@@ -73,6 +99,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
     public void addEmail(int position, Inbox email) {
         mItems.add(position, email);
         notifyItemInserted(position);
+    }
+
+    public void deleteEmail(int position) {
+        mItems.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void clearAllSelections() {
+        for (Inbox mItem : mItems) {
+            mItem.setSelected(false);
+        }
+        notifyDataSetChanged();
     }
 
 
