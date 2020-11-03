@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="icon_width">30dp</dimen>
+    <dimen name="icon_height">30dp</dimen>
+    <dimen name="edit_text_margin_bottom">24dp</dimen>
+
+    <dimen name="contact_icon_width">100dp</dimen>
+    <dimen name="contact_icon_height">100dp</dimen>
+    <dimen name="contact_icon_padding">10dp</dimen>
+    <dimen name="contact_info_margin_start">10dp</dimen>
+    <dimen name="contact_info_margin_top">10dp</dimen>
+</resources>
