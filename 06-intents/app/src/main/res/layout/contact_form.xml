@@ -16,8 +16,10 @@
         <ImageView
             android:layout_width="@dimen/icon_width"
             android:layout_height="@dimen/icon_height"
+            android:layout_marginTop="8dp"
             android:src="@drawable/ic_person"/>
         <EditText
+            android:id="@+id/first_name_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/AppTheme.ContactForm.EditText"
@@ -47,6 +49,7 @@
             android:id="@+id/phone_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="phone"
             style="@style/AppTheme.ContactForm.EditText"
             android:hint="@string/phone_hint"
             />
@@ -65,9 +68,11 @@
             android:layout_height="@dimen/icon_height"
             android:src="@drawable/ic_email_black_24dp" />
         <EditText
+            android:id="@+id/email_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email_hint"
+            style="@style/AppTheme.ContactForm.EditText"
             />
     </LinearLayout>
 
@@ -82,6 +87,7 @@
             android:src="@drawable/ic_place_black_24dp"
             style="@style/AppTheme.ImageView"/>
         <EditText
+            android:id="@+id/address_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/AppTheme.ContactForm.EditText"
@@ -99,6 +105,7 @@
             android:src="@drawable/ic_public_black_24dp"
             style="@style/AppTheme.ImageView"/>
         <EditText
+            android:id="@+id/website_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/AppTheme.ContactForm.EditText"

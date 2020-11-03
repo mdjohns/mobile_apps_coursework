@@ -47,30 +47,35 @@
                 >
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/phone_chip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/call_button_label"
                     app:chipIcon="@drawable/ic_phone_black_24dp"
                     style="@style/AppTheme.ContactInfo.Chip"/>
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/text_chip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_button_label"
                     app:chipIcon="@drawable/ic_textsms_black_24dp"
                     style="@style/AppTheme.ContactInfo.Chip"/>
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/email_chip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/email_button_label"
                     app:chipIcon="@drawable/ic_email_black_24dp"
                     style="@style/AppTheme.ContactInfo.Chip"/>
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/map_chip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/directions_button_label"
                     app:chipIcon="@drawable/ic_directions_black_24dp"
                     style="@style/AppTheme.ContactInfo.Chip"/>
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/web_chip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/web_button_label"
@@ -113,7 +118,7 @@
                 android:layout_width="match_parent"
                 style="@style/AppTheme.ContactInfo.HorizontalDivider"/>
             <TextView
-                android:id="@+id/location_display"
+                android:id="@+id/address_display"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100 Test St"
@@ -125,6 +130,7 @@
                 android:layout_width="match_parent"
                 style="@style/AppTheme.ContactInfo.HorizontalDivider"/>
             <TextView
+                android:id="@+id/website_display"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/AppTheme.ContactInfo.TextView"
