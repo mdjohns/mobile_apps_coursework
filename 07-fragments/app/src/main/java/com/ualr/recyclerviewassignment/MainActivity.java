@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onForwardClicked() {
         if (inboxFragment != null && inboxFragment.isInLayout()) {
-            Inbox selected = inboxFragment.getSelected();
-            showForwardDialog(selected);
+//            Inbox selected = inboxFragment.getSelected();
+//            showForwardDialog(selected);
         }
     }
     public void showForwardDialog(Inbox selected) {

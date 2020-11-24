@@ -62,13 +62,14 @@ public class InboxListFragment extends Fragment implements RecyclerAdapter.OnIte
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        List<Inbox> inboxList = DataGenerator.getInboxData(mContext);
-        inboxList.addAll(DataGenerator.getInboxData(mContext));
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext);
-        mAdapter = new RecyclerAdapter(mContext, inboxList);
+        List<Inbox> inboxList = DataGenerator.getInboxData(mContext);
+        InboxViewModel mViewModel = new InboxViewModel(inboxList);
+
+        mAdapter = new RecyclerAdapter(mContext, mViewModel.getInboxList().getValue());
         mAdapter.setOnItemClickListener(this);
         recyclerView = view.findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
 
