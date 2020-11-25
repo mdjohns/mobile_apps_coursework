@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.ualr.recyclerviewassignment.fragments.ForwardFragment;
 import com.ualr.recyclerviewassignment.fragments.InboxListFragment;
 import com.ualr.recyclerviewassignment.model.Inbox;
+import com.ualr.recyclerviewassignment.model.InboxViewModel;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String FORWARD_KEY = "FORWARD_EMAIL";
 
     private InboxListFragment inboxFragment;
+    private InboxViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,16 +88,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void onForwardClicked() {
         if (inboxFragment != null && inboxFragment.isInLayout()) {
-//            Inbox selected = inboxFragment.getSelected();
-//            showForwardDialog(selected);
+//            Bundle bundle = new Bundle();
+//            bundle.putInt(FORWARD_KEY, inboxFragment.getSelectedEmailPosition());
+//            ForwardFragment dialog = new ForwardFragment();
+//            dialog.setArguments(bundle);
+//            dialog.show(getSupportFragmentManager(), FORWARD_TAG);
+
+            inboxFragment.forwardEmail();
         }
-    }
-    public void showForwardDialog(Inbox selected) {
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(FORWARD_KEY, selected);
-        ForwardFragment dialog = new ForwardFragment();
-        dialog.setArguments(bundle);
-        dialog.show(getSupportFragmentManager(), FORWARD_TAG);
     }
 
 }

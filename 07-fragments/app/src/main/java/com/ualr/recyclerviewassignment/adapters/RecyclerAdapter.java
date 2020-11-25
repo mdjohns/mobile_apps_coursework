@@ -125,6 +125,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
+    public void updateItems(List<Inbox> inboxList) {
+        this.mItems = inboxList;
+        notifyDataSetChanged();
+    }
+
 
     private class InboxViewHolder extends RecyclerView.ViewHolder {
         public TextView senderIcon;

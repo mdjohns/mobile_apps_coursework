@@ -11,28 +11,24 @@ import java.util.List;
 public class InboxViewModel extends ViewModel {
     private static final int NO_SELECTION = -1;
     private MutableLiveData<List<Inbox>> inboxList = new MutableLiveData<>();
-    private MutableLiveData<Integer> selectedIndex = new MutableLiveData<>();
+    private MutableLiveData<Integer> selectedIndex = new MutableLiveData<>(NO_SELECTION);
 
     public LiveData<List<Inbox>> getInboxList() {
         return inboxList;
     }
 
+    public void setInboxList(List<Inbox> inboxList) {
+        this.inboxList.setValue(inboxList);
+    }
+
     public LiveData<Integer> getSelectedIndex() {
         return selectedIndex;
     }
-
-    public InboxViewModel(List<Inbox> inboxItems) {
-        this.inboxList.setValue(inboxItems);
-        this.selectedIndex.setValue(NO_SELECTION);
+    public void setSelectedIndex(int selected) {
+        this.selectedIndex.setValue(selected);
     }
-
     public void addEmail(Inbox email) {
-        List<Inbox> currentEmails = inboxList.getValue();
 
-        if (currentEmails != null) {
-            currentEmails.add(email);
-            this.inboxList.setValue(currentEmails);
-        }
 
     }
     public void deleteEmail(int position) {
@@ -42,6 +38,7 @@ public class InboxViewModel extends ViewModel {
             currentEmails.remove(position);
             this.inboxList.setValue(currentEmails);
         }
+
 
     }
 

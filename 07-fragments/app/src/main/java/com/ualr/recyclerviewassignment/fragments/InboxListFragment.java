@@ -2,6 +2,7 @@ package com.ualr.recyclerviewassignment.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,15 +26,14 @@ import java.util.List;
 
 public class InboxListFragment extends Fragment implements RecyclerAdapter.OnItemClickListener {
     private static final String TAG = InboxListFragment.class.getSimpleName();
-    private static final int DEFAULT_POS = 0;
+    private static final String FORWARD_TAG = ForwardFragment.class.getSimpleName();
+    private static final String FORWARD_KEY = "FORWARD_EMAIL";
 
     private Context mContext;
     private RecyclerView recyclerView;
     private RecyclerAdapter mAdapter;
-    private FloatingActionButton mFAB;
-    private int selectedEmailPosition = -1;
 
-    private InboxViewModel model;
+    private InboxViewModel mViewModel;
 
     @Override
     public void onAttach(Context context) {
@@ -64,54 +65,82 @@ public class InboxListFragment extends Fragment implements RecyclerAdapter.OnIte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         List<Inbox> inboxList = DataGenerator.getInboxData(mContext);
-        InboxViewModel mViewModel = new InboxViewModel(inboxList);
+        mViewModel = new ViewModelProvider(this).get(InboxViewModel.class);
+        mViewModel.setInboxList(inboxList);
 
         mAdapter = new RecyclerAdapter(mContext, mViewModel.getInboxList().getValue());
         mAdapter.setOnItemClickListener(this);
+
         recyclerView = view.findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
 
+
+        mViewModel.getInboxList().observe(getViewLifecycleOwner(), new Observer<List<Inbox>>() {
+            @Override
+            public void onChanged(List<Inbox> inboxList) {
+                mAdapter.updateItems(inboxList);
+            }
+        });
+
+
     }
 
     @Override
     public void onItemClick(View view, Inbox obj, int position) {
-        mAdapter.clearAllSelections();
-        obj.toggleSelection();
-        selectedEmailPosition = position;
-        mAdapter.notifyItemChanged(position);
+        List<Inbox> currentData = mViewModel.getInboxList().getValue();
+        clearAllSelections(currentData);
+        currentData.get(position).toggleSelection();
+        mViewModel.setSelectedIndex(position);
+        mViewModel.setInboxList(currentData);
     }
 
     @Override
     public void onIconClick(View view, Inbox obj, int position) {
         // Since we are not deleting with icon click anymore, this works the same as clicking the item
-        mAdapter.clearAllSelections();
-        obj.toggleSelection();
-        selectedEmailPosition = position;
-        mAdapter.notifyItemChanged(position);
+        List<Inbox> currentData = mViewModel.getInboxList().getValue();
+        clearAllSelections(currentData);
+        currentData.get(position).toggleSelection();
+        mViewModel.setSelectedIndex(position);
+        mViewModel.setInboxList(currentData);
     }
 
     public void addEmail() {
         Inbox newItem = DataGenerator.getRandomInboxItem(mContext);
-        mAdapter.addEmail(DEFAULT_POS, newItem);
-        recyclerView.scrollToPosition(DEFAULT_POS);
-    }
-
-    public Inbox getSelected() {
-        return mAdapter.getSelectedItem();
+        List<Inbox> currentData = mViewModel.getInboxList().getValue();
+        currentData.add(0, newItem);
+        mViewModel.setInboxList(currentData);
     }
 
     public boolean deleteEmail() {
-        if (selectedEmailPosition != -1) {
-            mAdapter.deleteEmail(selectedEmailPosition);
-            mAdapter.notifyItemRemoved(selectedEmailPosition);
-            mAdapter.clearAllSelections();
+        int currentSelection = mViewModel.getSelectedIndex().getValue();
+        List<Inbox> currentData = mViewModel.getInboxList().getValue();
 
-            selectedEmailPosition = -1;
+        if (currentSelection != -1 && currentData != null) {
+            currentData.remove(currentSelection);
+            clearAllSelections(currentData);
+
+            mViewModel.setInboxList(currentData);
+            mViewModel.setSelectedIndex(-1);
             return true;
         }
         return false;
+    }
+
+    public int getSelectedEmailPosition() {
+        return mViewModel.getSelectedIndex().getValue();
+    }
+
+    public void clearAllSelections(List<Inbox> inboxList) {
+        for (Inbox inbox: inboxList) {
+            inbox.setSelected(false);
+        }
+    }
+
+    public void forwardEmail() {
+        ForwardFragment forwardFragment = ForwardFragment.newInstance(getSelectedEmailPosition());
+        forwardFragment.show(getParentFragmentManager(), TAG);
     }
 
 
