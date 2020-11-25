@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lyt_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+<androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/sender_icon"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_marginLeft="@dimen/spacing_middle"
+    android:layout_marginRight="@dimen/spacing_middle"
+    android:background="@drawable/shape_circle"
+    android:backgroundTint="@color/colorPrimary"
+    android:textSize="40sp"
+    android:textColor="@color/grey_200"
+    />
+
+
+    <LinearLayout
+        android:id="@+id/email_preview_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/preview_top_lyt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/spacing_middle"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/sender_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/blue_grey_900"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/sender_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/email_timestamp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end|center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/sender_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue_grey_900"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/sender_icon"
+            app:layout_constraintTop_toBottomOf="@id/sender_name" />
+
+        <TextView
+            android:id="@+id/email_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintStart_toEndOf="@id/sender_name"
+            app:layout_constraintTop_toBottomOf="@id/sender_email" />
+    </LinearLayout>
+</LinearLayout>

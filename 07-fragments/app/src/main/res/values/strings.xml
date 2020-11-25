@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Fragments Assignment</string>
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin
+        \n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin
+    </string>
+    <!--App Bar-->
+    <string name="delete_icon">Delete Icon</string>
+
+    <!--Snackbar-->
+    <string name="delete_snackbar">Email has been deleted.</string>
+    <string name="forward_snackbar">Email has been forwarded.</string>
+
+
+    <!--Forward Dialog-->
+    <string name="forward">Forward</string>
+    <string name="forward_title">Forward Message</string>
+    <string name="to_label">To:</string>
+    <string name="name_label">Name:</string>
+    <string name="content_label">Text:</string>
+    <string name="send_btn_label">Send</string>
+</resources>
