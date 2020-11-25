@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +78,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         viewHolder.senderIcon.setText(inbox.getFrom().substring(0, 1));
         viewHolder.senderName.setText(inbox.getFrom());
         viewHolder.senderEmail.setText(inbox.getEmail());
-        viewHolder.emailPreview.setText(R.string.lorem_ipsum);
+        viewHolder.emailPreview.setText(inbox.getMessage());
         viewHolder.emailTimestamp.setText(inbox.getDate());
 
         if (inbox.isSelected()) {
@@ -103,27 +102,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         return this.mItems.size();
     }
 
-    public void addEmail(int position, Inbox email) {
-        mItems.add(position, email);
-        notifyItemInserted(position);
-    }
-
-    public void deleteEmail(int position) {
-        mItems.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    public Inbox getSelectedItem() {
-        return mItems.get(getSelectedIndex());
-    }
-
-    public void clearAllSelections() {
-        for (Inbox mItem : mItems) {
-            mItem.setSelected(false);
-        }
-        setSelectedIndex(-1);
-        notifyDataSetChanged();
-    }
 
     public void updateItems(List<Inbox> inboxList) {
         this.mItems = inboxList;

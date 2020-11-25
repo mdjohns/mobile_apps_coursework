@@ -65,7 +65,7 @@ public class InboxListFragment extends Fragment implements RecyclerAdapter.OnIte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         List<Inbox> inboxList = DataGenerator.getInboxData(mContext);
-        mViewModel = new ViewModelProvider(this).get(InboxViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(InboxViewModel.class);
         mViewModel.setInboxList(inboxList);
 
         mAdapter = new RecyclerAdapter(mContext, mViewModel.getInboxList().getValue());

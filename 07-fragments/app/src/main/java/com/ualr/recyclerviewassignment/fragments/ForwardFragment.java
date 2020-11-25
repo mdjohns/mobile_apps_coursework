@@ -1,22 +1,19 @@
 package com.ualr.recyclerviewassignment.fragments;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
+
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.Observer;
+
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.ualr.recyclerviewassignment.R;
 import com.ualr.recyclerviewassignment.model.Inbox;
@@ -26,10 +23,7 @@ import java.util.List;
 
 public class ForwardFragment extends DialogFragment {
     private static final String TAG = ForwardFragment.class.getSimpleName();
-    private static final String FORWARD_KEY = "FORWARD_EMAIL";
     private static final String SELECT_KEY = "selectedIndex";
-
-    //private int selectedIndex;
     private InboxViewModel mViewModel;
 
 
@@ -59,18 +53,38 @@ public class ForwardFragment extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        int selectedIndex = getArguments().getInt(SELECT_KEY);
+        final int selectedIndex = getArguments().getInt(SELECT_KEY);
 
-        List<Inbox> inboxList = mViewModel.getInboxList().getValue();
-        Inbox selectedItem = inboxList.get(selectedIndex);
+        final Inbox selectedItem = mViewModel.getInboxList().getValue().get(selectedIndex);
 
-        EditText nameET = view.findViewById(R.id.dialog_name);
-        EditText emailET = view.findViewById(R.id.dialog_to);
-        EditText contentET = view.findViewById(R.id.dialog_content);
+        Button sendBtn = view.findViewById(R.id.dialog_send_btn);
+        final EditText nameET = view.findViewById(R.id.dialog_name);
+        final EditText emailET = view.findViewById(R.id.dialog_to);
+        final EditText contentET = view.findViewById(R.id.dialog_content);
 
         nameET.setText(selectedItem.getFrom());
         emailET.setText(selectedItem.getEmail());
         contentET.setText(selectedItem.getMessage());
 
+        sendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newName = nameET.getText().toString();
+                String newEmail = emailET.getText().toString();
+                String newContent = contentET.getText().toString();
+
+                Inbox updatedEmail = new Inbox();
+                updatedEmail.setData(newName, newEmail, newContent, selectedItem.getDate(), false);
+
+                List<Inbox> currentEmails = mViewModel.getInboxList().getValue();
+                currentEmails.set(selectedIndex, updatedEmail);
+                mViewModel.setInboxList(currentEmails);
+                dismissDialog();
+            }
+        });
+
+    }
+    public void dismissDialog() {
+        this.dismiss();
     }
 }
